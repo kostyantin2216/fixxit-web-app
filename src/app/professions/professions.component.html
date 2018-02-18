@@ -1,0 +1,8 @@
+<ul class="list-group">
+  <li class="list-group-item" [hoverClass]="'active'"
+      *ngFor="let profession of professions;">
+      <a style="cursor: pointer;" (click)="onProfessionSelected(profession)" >
+        <app-profession [profession]="profession" ></app-profession>  
+      </a>
+  </li>
+</ul>
