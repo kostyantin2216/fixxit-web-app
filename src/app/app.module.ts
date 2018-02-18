@@ -26,7 +26,7 @@ import { HeaderComponent } from './header/header.component';
     AddressComponent,
     OrderCompleteComponent,
     HeaderComponent,
-    HoverClassDirective
+    HoverClassDirective,
   ],
   imports: [
     BrowserModule,
