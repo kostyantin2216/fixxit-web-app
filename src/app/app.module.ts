@@ -1,8 +1,7 @@
-import { GlobalStateService } from './shared/global-state.service';
-import { HoverClassDirective } from './shared/utilities/hover-class.directive';
-import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { UserService } from './user/user.service';
@@ -14,7 +13,8 @@ import { OrderComponent } from './order/order.component';
 import { UserComponent } from './user/user.component';
 import { AddressComponent } from './address/address.component';
 import { OrderCompleteComponent } from './order/order-complete/order-complete.component';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './header/header.component';import { GlobalStateService } from './shared/global-state.service';
+import { HoverClassDirective } from './shared/utilities/hover-class.directive';
 
 @NgModule({
   declarations: [
@@ -31,9 +31,22 @@ import { HeaderComponent } from './header/header.component';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    ReactiveFormsModule,
+    AppRoutingModule,
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyDyRmuM4bvGvATH-mZYJDCK0_xAjnW1qRE",
+      libraries: [
+        "places"
+      ]
+    })
   ],
-  providers: [GlobalDataService, GlobalStateService, UserService],
-  bootstrap: [AppComponent]
+  providers: [
+    GlobalDataService, 
+    GlobalStateService, 
+    UserService
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }
