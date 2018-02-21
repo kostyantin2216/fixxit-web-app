@@ -24,10 +24,13 @@ export class UserComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    let userName = localStorage.getItem('userName') || null;
+    let userEmail = localStorage.getItem('userEmail') || null;
+    let userTelephone = localStorage.getItem('userTelephone') || null;
     this.userForm = new FormGroup({
-      'name': new FormControl(null, Validators.required),
-      'email': new FormControl(null, CustomValidators.emailNotRequired),
-      'telephone': new FormControl(null, Validators.required)
+      'name': new FormControl(userName, Validators.required),
+      'email': new FormControl(userEmail, CustomValidators.emailNotRequired),
+      'telephone': new FormControl(userTelephone, Validators.required)
     });
   }
 
@@ -43,6 +46,9 @@ export class UserComponent implements OnInit, OnDestroy {
       this.userServiceSubscription = this.userService.getIdForUser(user).subscribe(
         (userId: number) => this.router.navigate([userId], { relativeTo: this.route })
       );
+      localStorage.setItem('userName', user.name);
+      localStorage.setItem('userEmail', user.email);
+      localStorage.setItem('userTelephone', user.telephone);
     }
     this.submitted = true;
   }

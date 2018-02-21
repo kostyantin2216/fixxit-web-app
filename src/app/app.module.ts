@@ -13,8 +13,13 @@ import { OrderComponent } from './order/order.component';
 import { UserComponent } from './user/user.component';
 import { AddressComponent } from './address/address.component';
 import { OrderCompleteComponent } from './order/order-complete/order-complete.component';
-import { HeaderComponent } from './header/header.component';import { GlobalStateService } from './shared/global-state.service';
+import { HeaderComponent } from './header/header.component';
 import { HoverClassDirective } from './shared/utilities/hover-class.directive';
+import { ProfessionResolve } from './professions/profession-resolve.service';
+import { ProfessionGaurd } from './professions/profession-guard.service';
+import { AddressGuard } from './address/address-guard.service';
+import { UserGuard } from './user/user-guard.service';
+import { UserResolve } from './user/user-resolve.service';
 
 @NgModule({
   declarations: [
@@ -42,8 +47,12 @@ import { HoverClassDirective } from './shared/utilities/hover-class.directive';
   ],
   providers: [
     GlobalDataService, 
-    GlobalStateService, 
-    UserService
+    UserService,
+    ProfessionResolve,
+    UserResolve,
+    ProfessionGaurd,
+    AddressGuard,
+    UserGuard
   ],
   bootstrap: [
     AppComponent

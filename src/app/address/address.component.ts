@@ -1,8 +1,7 @@
 import { LatLng } from './LatLng.model';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { GlobalStateService } from '../shared/global-state.service';
 import { Component, ElementRef, NgZone, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { MapsAPILoader } from '@agm/core';
 import {} from '@types/googlemaps';
 
@@ -12,9 +11,12 @@ import {} from '@types/googlemaps';
   styleUrls: ['./address.component.css']
 })
 export class AddressComponent {
+  private static DEFAULT_LAT = -26.195246;
+  private static DEFAULT_LNG = 28.034088;
 
   private geocoder: google.maps.Geocoder;
   private onGeocoderReady: Function;
+  private submitted = false;
 
   public location: LatLng;
   public searchControl: FormControl;
@@ -28,12 +30,12 @@ export class AddressComponent {
     private route: ActivatedRoute,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone
-  ) {}
+  ) { }
 
-  ngOnInit() {
+  ngOnInit() {    
     this.updateLocation(-26.195246, 28.034088, false, 9);
 
-    this.searchControl = new FormControl();
+    this.searchControl = new FormControl(null, Validators.required);
 
     this.setCurrentPosition();
 
@@ -66,17 +68,22 @@ export class AddressComponent {
       navigator.geolocation.getCurrentPosition((position) => {
         this.updateLocation(position.coords.latitude, position.coords.longitude);
       });
+    } else {
+      this.updateSearchControl();
+      console.log('missing geolocation');
     }
   }
 
-  private updateLocation(lat: number, lng: number, updateSearchControl = true, zoom = 12) {
-    this.location = {
-      lat: lat,
-      lng: lng
-    }
-    this.zoom = zoom;
-    if(updateSearchControl) {
-      this.updateSearchControl();
+  private updateLocation(lat: number, lng: number, updateSearchControl = true, zoom = 13) {
+    if(lat && lng) {
+      this.location = {
+        lat: lat,
+        lng: lng
+      }
+      this.zoom = zoom;
+      if(updateSearchControl) {
+        this.updateSearchControl();
+      }
     }
   }
 
@@ -97,7 +104,10 @@ export class AddressComponent {
   }
 
   onSubmit() {
-    this.router.navigate([this.searchControl.value], { relativeTo: this.route });
+    if(this.searchControl.valid) {
+      this.router.navigate([this.searchControl.value], { relativeTo: this.route });
+    }
+    this.submitted = true;
   }
 
 }

@@ -1,5 +1,4 @@
 import { ActivatedRoute, Params } from '@angular/router';
-import { GlobalStateService } from './shared/global-state.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private globalStateService: GlobalStateService) { }
+  constructor() { }
 
   ngOnInit() {
   }

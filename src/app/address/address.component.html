@@ -2,11 +2,19 @@
 <div class="container">
   <h1>Pick Job Location</h1>
   <hr/>
-  
   <form (ngSubmit)="onSubmit()">
+
     <div class="form-group">
-      <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"
-        #search [formControl]="searchControl">
+      <input placeholder="search for location" 
+             autocorrect="off" 
+             autocapitalize="off" 
+             spellcheck="off" 
+             type="text" 
+             class="form-control"
+             [ngClass]="{ 'is-invalid': searchControl.invalid && (submitted || searchControl.touched) }"
+             [formControl]="searchControl"
+             #search >
+      <div class="invalid-feedback">Must provide an address.</div>
     </div>
 
     <agm-map [latitude]="location.lat" [longitude]="location.lng" [scrollwheel]="false" [zoom]="zoom" (mapClick)="onMapClick($event)">

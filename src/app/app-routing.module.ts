@@ -3,21 +3,51 @@ import { OrderComponent } from './order/order.component';
 import { UserComponent } from './user/user.component';
 import { AddressComponent } from './address/address.component';
 import { ProfessionsComponent } from './professions/professions.component';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { ProfessionResolve } from './professions/profession-resolve.service';
+import { ProfessionGaurd } from './professions/profession-guard.service';
+import { AddressGuard } from './address/address-guard.service';
+import { UserResolve } from './user/user-resolve.service';
+import { UserGuard } from './user/user-guard.service';
 
-const appRoutes = [
-    { path: '', component: ProfessionsComponent },
-    { path: ':profession', component: AddressComponent },
-    { path: ':profession/:address', component: UserComponent },
-    { path: ':profession/:address/:user', component: OrderComponent },
-    { path: ':profession/:address/:user/complete', component: OrderCompleteComponent }
-];
+const appRoutes: Routes = [{
+  path: '',
+  component: ProfessionsComponent
+}, {
+  path: ':profession',
+  component: AddressComponent,
+  resolve: {
+    profession: ProfessionResolve
+  },
+  canActivate: [
+    ProfessionGaurd
+  ]
+}, {
+  path: ':profession/:address',
+  component: UserComponent,
+  canActivate: [
+    AddressGuard
+  ]
+}, {
+  path: ':profession/:address/:user',
+  component: OrderComponent,
+  resolve: {
+    profession: ProfessionResolve,
+    user: UserResolve
+  },
+  canActivate: [
+    UserGuard
+  ]
+}, {
+  path: ':profession/:address/:user/complete',
+  component: OrderCompleteComponent
+}];
 
 @NgModule({
-    imports: [
-        RouterModule.forRoot(appRoutes)
-    ],
-    exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(appRoutes)
+  ],
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }
