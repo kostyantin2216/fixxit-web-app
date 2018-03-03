@@ -1,10 +1,10 @@
+import { ServerAccessService } from './../../shared/server-access.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Profession } from '../../professions/profession.model';
 import { User } from '../../user/user.model';
 import { GlobalDataService } from '../../shared/global-data.service';
 import { UserService } from '../../user/user.service';
-import { OrderParams } from '../order-params.model';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -12,39 +12,31 @@ import { Subscription } from 'rxjs/Subscription';
   templateUrl: './order-complete.component.html',
   styleUrls: ['./order-complete.component.css']
 })
-export class OrderCompleteComponent implements OnInit, OnDestroy {
+export class OrderCompleteComponent implements OnInit {
 
-  public params: OrderParams;
-
-  private professionSubscription: Subscription;
+  public user: User;
 
   constructor(
-    private router: Router,
     private route: ActivatedRoute,
-    private globalData: GlobalDataService,
-    private userService: UserService
+    private serverAccessService: ServerAccessService
   ) { }
 
   ngOnInit() {
-    this.params = new OrderParams(() => console.log(this.params));
-    let profession = parseInt(this.route.snapshot.params['profession']);
-    if(profession) {
-      this.professionSubscription = this.globalData.loadProfession(profession).subscribe(
-        (p: Profession) => this.params.profession = p
-      );
-    } else {
-      this.params.profession = null;
-    }
-    this.params.address = this.route.snapshot.params['address'];
+    this.user = this.route.snapshot.data['user'];
 
-    this.route.snapshot.params['user'];
-    this.params.user = null;
-  }
-
-  ngOnDestroy() {
-    if(this.professionSubscription) {
-      this.professionSubscription.unsubscribe();
-    }
+    const profession = this.route.snapshot.data['profession'];
+    const address = this.route.snapshot.params['address'];
+    const comment = this.route.snapshot.params['comment'];
+    
+    this.serverAccessService.completeOrder(this.user, profession, address, comment).subscribe(
+      (response) => {
+        if(response) {
+          console.log(response);
+        } else {
+          console.log('success!');
+        }
+      }
+    );
   }
 
 }

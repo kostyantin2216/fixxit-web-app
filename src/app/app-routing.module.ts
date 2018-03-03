@@ -40,8 +40,15 @@ const appRoutes: Routes = [{
     UserGuard
   ]
 }, {
-  path: ':profession/:address/:user/complete',
-  component: OrderCompleteComponent
+  path: ':profession/:address/:user/:comment',
+  component: OrderCompleteComponent, 
+  resolve: {
+    profession: ProfessionResolve,
+    user: UserResolve
+  },
+  canActivate: [
+    UserGuard
+  ]
 }];
 
 @NgModule({

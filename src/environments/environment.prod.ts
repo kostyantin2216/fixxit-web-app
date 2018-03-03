@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  serverBaseUrl: 'http://fixxit-web.co.za/rest/',
+  serverApiKey: 'sVzuqNCJ8fWpod857J7UofUfll762pgs'
 };

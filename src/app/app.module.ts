@@ -1,7 +1,10 @@
+import { AuthorizationInterceptor } from './shared/authorization.interceptor';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AgmCoreModule } from '@agm/core';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { UserService } from './user/user.service';
@@ -20,6 +23,8 @@ import { ProfessionGaurd } from './professions/profession-guard.service';
 import { AddressGuard } from './address/address-guard.service';
 import { UserGuard } from './user/user-guard.service';
 import { UserResolve } from './user/user-resolve.service';
+import { ServerAccessService } from './shared/server-access.service';
+import '../rxjs.imports';
 
 @NgModule({
   declarations: [
@@ -31,10 +36,12 @@ import { UserResolve } from './user/user-resolve.service';
     AddressComponent,
     OrderCompleteComponent,
     HeaderComponent,
-    HoverClassDirective,
+    HoverClassDirective
   ],
   imports: [
     BrowserModule,
+    HttpModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
@@ -46,13 +53,19 @@ import { UserResolve } from './user/user-resolve.service';
     })
   ],
   providers: [
+    ServerAccessService,
     GlobalDataService, 
     UserService,
     ProfessionResolve,
     UserResolve,
     ProfessionGaurd,
     AddressGuard,
-    UserGuard
+    UserGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthorizationInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [
     AppComponent

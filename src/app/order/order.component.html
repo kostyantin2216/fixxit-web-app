@@ -1,15 +1,28 @@
 <div class="row">
   <div class="col-md-12">
-    {{ params.profession ? params.profession.name : '' }}
+    {{ profession.name }}
   </div>
 </div>
 <div class="row">
   <div class="col-md-12">
-    {{ params.address }}
+    {{ address }}
   </div>
 </div>
 <div class="row">
   <div class="col-md-12">
-    {{ params.user ? params.user.name : '' }}
+    {{ user.name }}
   </div>
+</div>
+<hr />
+<div class="row">
+  <div class="col-md-12">
+    <textarea class="form-control" #comment></textarea>
+  </div>
+</div>
+<div class="d-flex justify-content-between mt-1">
+  <div class="p-1"></div>
+  <div class="p-1">
+    <button class="btn btn-success" type="submit" (click)="completeOrder(comment)">Submit</button>
+  </div>
+  <div class="p-1"></div>
 </div>
