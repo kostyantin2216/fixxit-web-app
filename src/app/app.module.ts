@@ -24,6 +24,8 @@ import { AddressGuard } from './address/address-guard.service';
 import { UserGuard } from './user/user-guard.service';
 import { UserResolve } from './user/user-resolve.service';
 import { ServerAccessService } from './shared/server-access.service';
+import { FooterComponent } from './footer/footer.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 import '../rxjs.imports';
 
 @NgModule({
@@ -36,7 +38,9 @@ import '../rxjs.imports';
     AddressComponent,
     OrderCompleteComponent,
     HeaderComponent,
-    HoverClassDirective
+    HoverClassDirective,
+    FooterComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,

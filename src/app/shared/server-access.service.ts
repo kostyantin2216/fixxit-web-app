@@ -1,3 +1,4 @@
+import { ContactUsModel } from './../contact-us/contact-us.model';
 import { Injectable } from "@angular/core";
 import { Http, Headers, Response } from '@angular/http';
 import { environment } from "../../environments/environment";
@@ -40,6 +41,13 @@ export class ServerAccessService {
             body.toString(),
             options
         );
+    }
+
+    contactUsEnquiry(model: ContactUsModel) {
+        this.httpClient.post(
+            this.completeUrl('general/contactus/json'),
+            model
+        ).subscribe();
     }
 
     private completeUrl(suffix) {

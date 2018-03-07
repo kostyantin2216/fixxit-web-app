@@ -1,3 +1,4 @@
+import { ContactUsComponent } from './contact-us/contact-us.component';
 import { OrderCompleteComponent } from './order/order-complete/order-complete.component';
 import { OrderComponent } from './order/order.component';
 import { UserComponent } from './user/user.component';
@@ -14,7 +15,12 @@ import { UserGuard } from './user/user-guard.service';
 const appRoutes: Routes = [{
   path: '',
   component: ProfessionsComponent
-}, {
+},
+{
+  path: 'contactus',
+  component: ContactUsComponent
+},
+{
   path: ':profession',
   component: AddressComponent,
   resolve: {

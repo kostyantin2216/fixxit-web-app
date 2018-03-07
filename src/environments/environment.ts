@@ -6,5 +6,7 @@
 export const environment = {
   production: false,
   serverBaseUrl: 'http://127.0.0.1/rest/',
-  serverApiKey: 'sVzuqNCJ8fWpod857J7UofUfll762pgs'
+  serverApiKey: 'sVzuqNCJ8fWpod857J7UofUfll762pgs',
+
+  contactNumber: '0502835431'
 };

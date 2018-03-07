@@ -16,8 +16,8 @@ export class AddressComponent {
 
   private geocoder: google.maps.Geocoder;
   private onGeocoderReady: Function;
-  private submitted = false;
 
+  public submitted = false;
   public location: LatLng;
   public searchControl: FormControl;
   public zoom: number;
