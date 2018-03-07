@@ -1,9 +1,8 @@
-import { ServerAccessService } from './../../shared/server-access.service';
+import { ServerAccessService } from './../../../shared/server-access.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Profession } from '../../professions/profession.model';
 import { User } from '../../user/user.model';
-import { GlobalDataService } from '../../shared/global-data.service';
 import { UserService } from '../../user/user.service';
 import { Subscription } from 'rxjs/Subscription';
 

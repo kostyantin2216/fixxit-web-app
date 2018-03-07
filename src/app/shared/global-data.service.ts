@@ -1,8 +1,8 @@
-import { Profession } from '../professions/profession.model';
 import { Subscribable } from 'rxjs/Observable';
 import { Observable } from 'rxjs/Rx';
 import { Injectable } from '@angular/core';
 import { ServerAccessService } from './server-access.service';
+import { Profession } from '../core/professions/profession.model';
 
 @Injectable()
 export class GlobalDataService {

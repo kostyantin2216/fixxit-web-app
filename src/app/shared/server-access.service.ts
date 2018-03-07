@@ -1,9 +1,9 @@
-import { ContactUsModel } from './../contact-us/contact-us.model';
+import { ContactUsModel } from './../core/contact-us/contact-us.model';
+import { User } from './../core/user/user.model';
+import { Profession } from './../core/professions/profession.model';
 import { Injectable } from "@angular/core";
 import { Http, Headers, Response } from '@angular/http';
 import { environment } from "../../environments/environment";
-import { User } from "../user/user.model";
-import { Profession } from "../professions/profession.model";
 import { assign } from 'lodash';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 

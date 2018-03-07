@@ -1,10 +1,10 @@
+import { CustomValidators } from './../../shared/utilities/custom-validators';
 import { Subscription } from 'rxjs/Rx';
 import { User } from './user.model';
 import { UserService } from './user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { CustomValidators } from '../shared/utilities/custom-validators';
 
 @Component({
   selector: 'app-user',

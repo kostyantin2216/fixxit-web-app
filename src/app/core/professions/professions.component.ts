@@ -1,7 +1,7 @@
+import { GlobalDataService } from './../../shared/global-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Profession } from './profession.model';
 import { Subscription } from 'rxjs/Rx';
-import { GlobalDataService } from '../shared/global-data.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
@@ -13,8 +13,10 @@ export class ProfessionsComponent implements OnInit, OnDestroy {
   private professionsSubscription: Subscription;
   professions: Profession[];
 
-  constructor(private globalDataService: GlobalDataService, 
-              private router: Router) { }
+  constructor(
+    private globalDataService: GlobalDataService, 
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.professionsSubscription = this.globalDataService.loadProfessions().subscribe(

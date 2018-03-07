@@ -1,16 +1,17 @@
-import { ContactUsComponent } from './contact-us/contact-us.component';
-import { OrderCompleteComponent } from './order/order-complete/order-complete.component';
-import { OrderComponent } from './order/order.component';
-import { UserComponent } from './user/user.component';
-import { AddressComponent } from './address/address.component';
-import { ProfessionsComponent } from './professions/professions.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { ProfessionResolve } from './professions/profession-resolve.service';
-import { ProfessionGaurd } from './professions/profession-guard.service';
-import { AddressGuard } from './address/address-guard.service';
-import { UserResolve } from './user/user-resolve.service';
-import { UserGuard } from './user/user-guard.service';
+
+import { OrderCompleteComponent } from './core/order/order-complete/order-complete.component';
+import { UserGuard } from './core/user/user-guard.service';
+import { UserResolve } from './core/user/user-resolve.service';
+import { OrderComponent } from './core/order/order.component';
+import { AddressGuard } from './core/address/address-guard.service';
+import { UserComponent } from './core/user/user.component';
+import { ProfessionGaurd } from './core/professions/profession-guard.service';
+import { ProfessionResolve } from './core/professions/profession-resolve.service';
+import { AddressComponent } from './core/address/address.component';
+import { ContactUsComponent } from './core/contact-us/contact-us.component';
+import { ProfessionsComponent } from './core/professions/professions.component';
 
 const appRoutes: Routes = [{
   path: '',

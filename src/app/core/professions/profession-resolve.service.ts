@@ -1,6 +1,6 @@
+import { GlobalDataService } from './../../shared/global-data.service';
 import { Resolve, ActivatedRouteSnapshot } from "@angular/router";
 import { Profession } from "./profession.model";
-import { GlobalDataService } from "../shared/global-data.service";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/Observable";
 
